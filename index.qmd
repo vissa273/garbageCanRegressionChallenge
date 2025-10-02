@@ -3,7 +3,7 @@ title: "Garbage Can Regression Challenge"
 format:
   html: default
 execute:
-  echo: true
+  echo: false
   eval: true
 ---
 
@@ -40,31 +40,6 @@ observDF <- tribble(
 
 observDF
 ```
-
-## Python Code
-
-```{python}
-#| echo: true
-import pandas as pd
-import numpy as np
-import matplotlib.pyplot as plt
-import seaborn as sns
-from sklearn.linear_model import LinearRegression
-from sklearn.metrics import r2_score
-import statsmodels.api as sm
-
-# Data with known true relationships: Anxiety = Stress + 0.1 × Time
-data = {
-    'Stress': [0,0,0,1,1,1,2,2,2,8,8,8,12,12,12],
-    'StressSurvey': [0,0,0,3,3,3,6,6,6,9,9,9,12,12,12],
-    'Time': [0,1,1,1,1,1,2,2,2,2,2,2.1,2.2,2.2,2.2],
-    'Anxiety': [0,0.1,0.1,1.1,1.1,1.1,2.2,2.2,2.2,8.2,8.2,8.21,12.22,12.22,12.22]
-}
-
-observDF = pd.DataFrame(data)
-print(observDF)
-```
-
 ## Your Analysis
 
 Follow the challenge instructions from your course to complete your analysis.
