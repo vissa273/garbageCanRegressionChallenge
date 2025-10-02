@@ -39,7 +39,42 @@ observDF <- tribble(
 )
 
 observDF
+
+# Follow the challenge instructions from your course to complete your analysis.
+# Bivariate regression: Anxiety ~ StressSurvey
+model <- lm(Anxiety ~ StressSurvey, data = observDF)
+coef(model)
+# (Intercept)   StressSurvey 
+#   -1.524000      1.047000
+
+
+# Scatter plot with OLS regression line
+library(ggplot2)
+ggplot(observDF, aes(x = StressSurvey, y = Anxiety)) +
+  geom_point(size = 2, alpha = 0.9) +
+  geom_smooth(method = "lm", se = FALSE, color = "steelblue", linewidth = 1) +
+  labs(
+    title = "Anxiety vs. StressSurvey with OLS fit",
+    x = "StressSurvey",
+    y = "Anxiety"
+  )
+# As the level of anxiety increases, the level of stress survey also increases.
+
+
+# Bivariate regression: Anxiety ~ Time
+model_time <- lm(Anxiety ~ Time, data = observDF)
+coef(model_time)
+
+# Scatter plot with OLS regression line for Time
+ggplot(observDF, aes(x = Time, y = Anxiety)) +
+  geom_point(size = 2, alpha = 0.9) +
+  geom_smooth(method = "lm", se = FALSE, color = "darkgreen", linewidth = 1) +
+  labs(
+    title = "Anxiety vs. Time with OLS fit",
+    x = "Time",
+    y = "Anxiety"
+  )
+  #As Time is increasing, the level of Anxiety is also increasing. There is an extreme outlier on Anxiety. 
 ```
 ## Your Analysis
 
-Follow the challenge instructions from your course to complete your analysis.
