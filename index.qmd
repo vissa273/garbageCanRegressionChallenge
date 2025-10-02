@@ -75,6 +75,17 @@ ggplot(observDF, aes(x = Time, y = Anxiety)) +
     y = "Anxiety"
   )
   #As Time is increasing, the level of Anxiety is also increasing. There is an extreme outlier on Anxiety. 
+
+
+# Multiple regression: Anxiety ~ StressSurvey + Time
+model_multiple <- lm(Anxiety ~ StressSurvey + Time, data = observDF)
+broom::tidy(model_multiple)
+
+# Compare with true model: Anxiety ~ Stress + Time
+model_true <- lm(Anxiety ~ Stress + Time, data = observDF)
+broom::tidy(model_true)
+
+  
 ```
 ## Your Analysis
 
