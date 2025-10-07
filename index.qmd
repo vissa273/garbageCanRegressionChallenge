@@ -64,8 +64,8 @@ ggplot(observDF, aes(x = StressSurvey, y = Anxiety)) +
 # Bivariate regression: Anxiety ~ Time
 model_time <- lm(Anxiety ~ Time, data = observDF)
 coef(model_time)
-(Intercept)        Time 
--3.68013      5.340592
+# (Intercept)        Time 
+# -3.68013      5.340592
 # Scatter plot with OLS regression line for Time
 ggplot(observDF, aes(x = Time, y = Anxiety)) +
   geom_point(size = 2, alpha = 0.9) +
@@ -81,8 +81,8 @@ ggplot(observDF, aes(x = Time, y = Anxiety)) +
 # Multiple regression: Anxiety ~ StressSurvey + Time
 model_multiple <- lm(Anxiety ~ StressSurvey + Time, data = observDF)
 broom::tidy(model_multiple)
-(Intercept)   StressSurvey         Time 
-0.5896064       1.43               -2.78
+# (Intercept)   StressSurvey         Time 
+# 0.5896064       1.43               -2.78
 #p-value is 0.074 for StressSurvey and 0.000 for Time. This is not a good model because the p-values are not significant.
 #They compare to the true relationships. The StressSurvey and Time are not significant. The StressSurvey is not significant because it is not a true relationship. The Time is not significant because it is not a true relationship.
 
