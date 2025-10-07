@@ -14,7 +14,6 @@ execute:
 ## R Code
 
 ```{r}
-#| echo: true
 library(tidyverse)
 library(broom)
 
