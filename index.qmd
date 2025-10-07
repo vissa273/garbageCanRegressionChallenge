@@ -89,7 +89,8 @@ broom::tidy(model_multiple)
 model_true <- lm(Anxiety ~ Stress + Time, data = observDF)
 broom::tidy(model_true)
 #The estimated coefficients are indicative of the true relationship. It compares to the true relationship because it is a perfect fit.
-  
+
+#True model (Anxiety ~ Stress + Time): likely ~1.00 because the data were generated as Anxiety = Stress + 0.1 × Time. It's a perfect fit. Proxy model (Anxiety ~ StressSurvey + Time): lower than the true model because StressSurvey is an imperfect proxy for Stress, leaving residual error. It's not a perfect fit. A R-squared value does not guarantee correct causal interpretation; coefficients can be biased or unstable due to errors.
 ```
 ## Your Analysis
 
