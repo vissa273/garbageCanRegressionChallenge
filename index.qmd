@@ -83,11 +83,13 @@ model_multiple <- lm(Anxiety ~ StressSurvey + Time, data = observDF)
 broom::tidy(model_multiple)
 (Intercept)   StressSurvey         Time 
 0.5896064       1.43               -2.78
+#p-value is 0.074 for StressSurvey and 0.000 for Time. This is not a good model because the p-values are not significant.
 #They compare to the true relationships. The StressSurvey and Time are not significant. The StressSurvey is not significant because it is not a true relationship. The Time is not significant because it is not a true relationship.
 
 # Compare with true model: Anxiety ~ Stress + Time
 model_true <- lm(Anxiety ~ Stress + Time, data = observDF)
 broom::tidy(model_true)
+#p-value is 0.000 for Stress and 0.000 for Time. This is a good model because the p-values are significant.
 #The estimated coefficients are indicative of the true relationship. It compares to the true relationship because it is a perfect fit.
 
 #True model (Anxiety ~ Stress + Time): likely ~1.00 because the data were generated as Anxiety = Stress + 0.1 × Time. It's a perfect fit. Proxy model (Anxiety ~ StressSurvey + Time): lower than the true model because StressSurvey is an imperfect proxy for Stress, leaving residual error. It's not a perfect fit. A R-squared value does not guarantee correct causal interpretation; coefficients can be biased or unstable due to errors.
