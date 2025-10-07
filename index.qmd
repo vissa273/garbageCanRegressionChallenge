@@ -95,6 +95,31 @@ broom::tidy(model_true)
 #For the first model, I would expect a press outlet to headline it as "More Time on Social Media Linked to Higher Anxiety". For the second model, "Stress attributed to a higher level of anxiety". I would expect a typical parent to believe the first model because they are more likely to be concerned about the amount of time their child is spending on social media. Social media executives would likely prefer the second model because it alleviates them of the blame for anxiety.
 
 
+# Subset analysis to avoid proxy mismatch (remove rows where StressSurvey == 9)
+df_subset <- observDF |> dplyr::filter(StressSurvey != 9)
+
+# Refit multiple regression on the subset
+  model_subset <- lm(Anxiety ~ StressSurvey + Time, data = df_subset)
+  broom::tidy(model_subset)
+broom::glance(model_subset)
+
+# Basic diagnostics for linearity and residual normality
+par(mfrow = c(1,2))
+plot(model_subset, which = 1)
+plot(model_subset, which = 2)
+par(mfrow = c(1,1))
+
+# Visual check: Anxiety vs Time colored by StressSurvey levels
+ggplot(df_subset, aes(x = Time, y = Anxiety, color = factor(StressSurvey))) +
+  geom_point(size = 2) +
+  geom_smooth(method = "lm", se = FALSE) +
+  labs(title = "Anxiety ~ Time by StressSurvey (subset without 9)", color = "StressSurvey")
+
+# Inspect estimated Time effect relative to true 0.1
+coef(model_subset)["Time"]
+#The estimated Time effect is -2.78, which is significantly different from the true relationship of 0.1. This is likely due to the fact that the data is not normally distributed.
+#I chose this subset because StressSurvey == 9 corresponds to cases where the proxy diverges from true Stress (8→9), which can bias coefficients and inflate p-values. Removing these rows creates a more understandable visualization between StressSurvey and true Stress
+
 ```
 ## Your Analysis
 
